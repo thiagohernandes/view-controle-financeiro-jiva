@@ -1,0 +1,51 @@
+<div class="container" style="text-align:center">
+  <hr>
+
+  <!-- Informações para gravação do lançamento financeiro -->
+  <div class="row">
+      <div style="text-align:left" class="col-2">
+          Tipo
+           <select id="selectTipo" class="form-control" aria-label="Default" [(ngModel)]="lancamento.tipo" 
+                   aria-describedby="convenio">
+                  <option value="R">Receita</option>
+                  <option value="D">Despesa</option>
+          </select>
+      </div>
+      <div style="text-align:left" class="col-3">
+          Vencimento 
+          <input type="date" class="form-control" aria-label="Default" [(ngModel)]="lancamento.vencimento">
+      </div>
+      <div style="text-align:left" class="col-4">
+          Descrição <input type="text" class="form-control" aria-label="Default"
+                      [(ngModel)]="lancamento.descricao">
+      </div>
+      <div style="text-align:left" class="col-3">
+          Valor <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                class="form-control" [(ngModel)]="lancamento.valor">
+      </div>
+  </div>
+
+  <!-- Erros -->
+  <div class="row" *ngIf="msgErros.length > 0">
+          <div style="text-align:left" class="col-5">
+              <span *ngFor="let msg of msgErros" style="color:red">
+              <strong> {{msg}} </strong>
+              </span>
+          </div>
+  </div>
+
+<!-- Botões de controle -->
+<div class="row">
+      <div style="text-align:left" class="col-1">
+        <br/>
+        <button type="button" class="btn btn-primary" (click)="salvarLancamento()">
+        Salvar
+        </button>
+      </div>
+      <div style="text-align:left" class="col-1">
+        <br/>
+        <a class="nav-link" routerLink="/app-lancamentos" routerLinkActive="active">
+        Cancelar
+        </a>
+      </div>
+</div> 
