@@ -55,8 +55,9 @@ export class GraficoComponent implements AfterViewInit,OnInit {
               label: '',
               data: this.dadosGrafico,
               backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)'
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 99, 132, 1)'
+                  
               ],
               borderWidth: 1
           }]
