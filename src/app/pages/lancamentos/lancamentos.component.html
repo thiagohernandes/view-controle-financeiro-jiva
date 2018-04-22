@@ -1,0 +1,32 @@
+<div class="container" style="text-align:center;width: 65%">
+  <br/>
+  <div *ngIf="listaLancamentos.length > 0">
+      <div class="row">
+          <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Código</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Valor</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of listaLancamentos; let i = index">
+                  <td style="text-align:center">{{item.id}}</td>
+                  <td style="text-align:left">{{item.descricao}}</td>
+                  <td style="text-align:left">{{item.vencimento | date:'dd/MM/yyyy'}}</td>
+                  <td style="text-align:left">{{item.valor | currency:'BRL'}}</td>
+                  <td>
+                      <button type="button" class="btn btn-warning" 
+                              [routerLink]="['/app-lancamentos-edit', item.id]">Alterar</button>
+                      <button type="button" class="btn btn-danger" data-target="#modalExclusao" 
+                              data-toggle="modal">Excluir</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+  </div>
+</div>
