@@ -1,0 +1,10 @@
+<div class="container" style="text-align:center;width: 65%">
+    <!-- Gráfico -->
+    <canvas id="myChart" width="700" height="400"></canvas>
+    <!-- Msgs de erro/aviso -->
+    <div *ngIf="msgErro.length > 0">
+            <span *ngFor="let msg of msgErro" style="color:red">
+                <strong>{{msg}}</strong> <br/>
+            </span>
+        </div>
+</div>

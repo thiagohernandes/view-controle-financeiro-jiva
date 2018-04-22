@@ -1,6 +1,7 @@
-<div class="container" style="text-align:center;width: 65%">
+<div class="container" style="text-align:center;width: 65%; overflow-x: auto;">
   <br/>
-  <div *ngIf="listaLancamentos.length > 0">
+   <!-- Lançamentos -->
+  <div *ngIf="listaLancamentos.length > 0; else nenhumLancamentoEncontrado" style="overflow-y: scroll;">
       <div class="row">
           <table class="table table-striped table-sm">
               <thead>
@@ -17,16 +18,56 @@
                   <td style="text-align:center">{{item.id}}</td>
                   <td style="text-align:left">{{item.descricao}}</td>
                   <td style="text-align:left">{{item.vencimento | date:'dd/MM/yyyy'}}</td>
-                  <td style="text-align:left">{{item.valor | currency:'BRL'}}</td>
+                  <td style="text-align:right" [ngStyle]="{'color': item.tipo == 'R' ? 'blue' : 'red', 'font-weight' : 'bold' }">
+                    {{item.valor | currency:'BRL'}}
+                  </td>
                   <td>
                       <button type="button" class="btn btn-warning" 
                               [routerLink]="['/app-lancamentos-edit', item.id]">Alterar</button>
                       <button type="button" class="btn btn-danger" data-target="#modalExclusao" 
-                              data-toggle="modal">Excluir</button>
+                              data-toggle="modal" (click)="setCurrentLancamento(item)">Excluir</button>
                   </td>
                 </tr>
               </tbody>
             </table>
         </div>
   </div>
+
+  <!-- Msgs de erro/aviso -->
+  <div *ngIf="msgErro.length > 0">
+      <span *ngFor="let msg of msgErro" style="color:red">
+          <strong>{{msg}}</strong> <br/>
+      </span>
+  </div>
+
+  <!-- Template nenhum lançamento encontrado-->
+  <ng-template #nenhumLancamentoEncontrado>
+      Nenhuma informação para exibir
+  </ng-template>
+
+   <!-- Modal Exclusão -->
+   <div class="modal fade" id="modalExclusao" tabindex="-1" 
+   role="dialog" aria-labelledby="modalExclusaoLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="modalExclusaoLabel">Confirmação</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body" style="text-align:left">
+           Tem certeza da exclusão do lançamento:   
+           <strong>{{currentLancamento.descricao}}</strong>
+           <strong>{{currentLancamento.valor | currency:'BRL'}}</strong>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-primary" data-dismiss="modal"
+             (click)="apagarLancamento(currentLancamento.id)">Sim</button>
+           <button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
+         </div>
+       </div>
+     </div>
+ </div>
+
 </div>

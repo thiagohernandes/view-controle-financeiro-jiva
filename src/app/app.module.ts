@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { AppComponent } from './app.component';
 import { LancamentosComponent } from './pages/lancamentos/lancamentos.component';
@@ -11,9 +12,11 @@ import { LancamentosEditComponent } from './pages/lancamentos-edit/lancamentos-e
 
 import { LancamentosService } from './services/lancamentos.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { registerLocaleData } from '@angular/common';
+import { GraficoComponent } from './pages/grafico/grafico.component';
 
+import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+
 registerLocaleData(ptBr)
 
 const appRoutes: Routes = [
@@ -22,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'app-lancamentos/:msg', component: LancamentosComponent },
   { path: 'app-lancamentos-edit', component: LancamentosEditComponent },
   { path: 'app-lancamentos-edit/:id', component: LancamentosEditComponent },
+  { path: 'app-grafico', component: GraficoComponent },
   { path: '**', component: NotFoundComponent } 
 ];
 
@@ -30,7 +34,8 @@ const appRoutes: Routes = [
     AppComponent,
     LancamentosComponent,
     LancamentosEditComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
-    )
+    ),
+    CurrencyMaskModule
   ],
   providers: [
     LancamentosService,
