@@ -52,12 +52,11 @@ export class GraficoComponent implements AfterViewInit,OnInit {
       data: {
           labels: this.labelsGrafico,
           datasets: [{
-              label: '# of Votes',
+              label: '',
               data: this.dadosGrafico,
               backgroundColor: [
                   'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)'
+                  'rgba(54, 162, 235, 1)'
               ],
               borderWidth: 1
           }]
