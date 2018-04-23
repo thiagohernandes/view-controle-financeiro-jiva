@@ -11,4 +11,4 @@ npm install
 
 ng serve
 
-Acessar em: http://localhost:42000
+Acessar em: http://localhost:4200
